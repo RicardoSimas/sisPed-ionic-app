@@ -1,3 +1,3 @@
 export interface Cart {
-    items: CartItem[]
+    items: CartItem[];
 }
