@@ -4,6 +4,7 @@ import { CartItem } from '../../models/cart-item';
 import { API_CONFIG } from '../../config/api.config';
 import { ProdutoService } from '../../services/domain/produto.service';
 import { CartService } from '../../services/domain/cart.service';
+import { ProdutoDTO } from '../../models/produto.dto';
 
 @IonicPage()
 @Component({
@@ -56,5 +57,9 @@ export class CartPage {
 
   goOn(){
     this.navCtrl.setRoot('CategoriasPage');
+  }
+
+  checkout(){
+    this.navCtrl.setRoot('PickAddressPage');
   }
 }
