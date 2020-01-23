@@ -4,8 +4,6 @@ import { Observable } from "rxjs/Rx";
 import { ClienteDTO } from "../../models/cliente.dto";
 import { API_CONFIG } from "../../config/api.config";
 import { StorageService } from "../storage.service";
-import { ResponseType } from "@angular/http";
-
 
 @Injectable()
 export class ClienteService {
@@ -14,9 +12,9 @@ export class ClienteService {
 
     }
 
-    findByEmail(email: String): Observable<ClienteDTO> {
+    findByEmail(email: String) {
 
-        return this.http.get<ClienteDTO>(
+        return this.http.get(
             `${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
     }
 
