@@ -19,6 +19,7 @@ export class OrderconfirmationPage {
   cartItems: CartItem[];
   cliente: ClienteDTO;
   endereco: EnderecoDTO;
+  codpedido: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -57,50 +58,25 @@ export class OrderconfirmationPage {
     this.pedidoService.insert(this.pedido)
       .subscribe(response => {
         this.cartService.createOrClearCart();
-        this.showInsertOk();
+        this.codpedido = this.extractId(response.headers.get('location'));
       },
       error => {
         if(error.status == 403){
-          this.showFalhaInsert();
+          this.navCtrl.setRoot('HomePage');
         }
       });
   }
 
-  showInsertOk() {
-    let alert = this.alertCtrl.create({
-      title: 'Sucesso!',
-      message: 'Pedido realizado com sucesso!',
-      enableBackdropDismiss: false,
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => {
-            this.navCtrl.pop();
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-
-  showFalhaInsert() {
-    let alert = this.alertCtrl.create({
-      title: '403',
-      message: 'Erro de autenticação!',
-      enableBackdropDismiss: false,
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => {
-            this.navCtrl.pop();
-          }
-        }
-      ]
-    });
-    alert.present();
+  private extractId(location : string){
+    let position = location.lastIndexOf("/");
+    return location.substring(position + 1, location.length);
   }
 
   back(){
     this.navCtrl.setRoot('CartPage');
+  }
+
+  home(){
+    this.navCtrl.setRoot('CategoriasPage');
   }
 }
