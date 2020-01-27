@@ -76,7 +76,7 @@ export class SignupPage {
   showInsertOk() {
     let alert = this.alertCtrl.create({
       title: 'Sucesso!',
-      message: 'Cadastro efetuado com sucesso!',
+      message: 'response.headers.get("location")',
       enableBackdropDismiss: false,
       buttons: [
         {
