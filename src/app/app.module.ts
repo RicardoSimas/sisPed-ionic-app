@@ -40,7 +40,7 @@ import { CartService } from '../services/domain/cart.service';
     StorageService,
     ClienteService,
     ProdutoService,
-    CartService
+    CartService,
   ]
 })
 export class AppModule {}
